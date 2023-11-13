@@ -7,6 +7,7 @@ TagManager:
   - Melee
   - Ranger
   - Base
+  - Range
   layers:
   - Default
   - TransparentFX
