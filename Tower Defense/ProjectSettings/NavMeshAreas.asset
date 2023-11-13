@@ -11,12 +11,12 @@ NavMeshProjectSettings:
     cost: 1
   - name: Jump
     cost: 2
-  - name: 
-    cost: 1
-  - name: 
-    cost: 1
-  - name: 
-    cost: 1
+  - name: Heavy Walk
+    cost: 3
+  - name: Heavier Walk
+    cost: 4
+  - name: Heaviest Walk
+    cost: 5
   - name: 
     cost: 1
   - name: 
