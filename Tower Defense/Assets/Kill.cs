@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Kill : MonoBehaviour
 {
-    public GameObject enemy1;
-    public GameObject enemy2;
-
     public int damage;
 
     // Start is called before the first frame update
@@ -23,13 +20,10 @@ public class Kill : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Melee"))
+        Debug.Log("Entered!");
+        if (other.gameObject.CompareTag("Melee") || other.gameObject.CompareTag("Ranger"))
         {
-            Destroy(enemy1);
-        }
-        else if (other.gameObject.CompareTag("Ranger"))
-        {
-            Destroy(enemy2);
+            Destroy(other.gameObject);
         }
     }
 }
