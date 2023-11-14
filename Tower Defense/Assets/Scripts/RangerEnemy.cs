@@ -16,27 +16,8 @@ public class RangerEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (health == 0)
-        {
-            Destroy(gameObject);
-        }
+        
     }
-
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Range"))
-        {
-            StartCoroutine(TickDamage());
-        }
-    }
-
-    //public void OnTriggerExit(Collider other)
-    //{
-    //    if (other.gameObject.CompareTag("Range"))
-    //    {
-    //        StopCoroutine(TickDamage());
-    //    }
-    //}
 
     IEnumerator TickDamage()
     {
