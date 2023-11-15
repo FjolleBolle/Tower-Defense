@@ -49,9 +49,10 @@ public class BuildingScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
 
-
+            Debug.Log("working 0");
             if (CanBePlaced(ObjectToPlace))
             {
+                Debug.Log("working 1");
                 ObjectToPlace.Place();
                 Vector3Int start = gridLayout.WorldToCell(ObjectToPlace.GetStartPosition());
                 TakeArea(start, ObjectToPlace.Size);
@@ -99,7 +100,7 @@ public class BuildingScript : MonoBehaviour
         TileBase[] array = new TileBase[area.size.x * area.size.y * area.size.z];
         int counter = 0;
 
-        foreach (var v /*:Vector3Int*/ in area.allPositionsWithin)
+        foreach (var v in area.allPositionsWithin)
         {
             Vector3Int pos = new Vector3Int(v.x, v.y, z:0);
             array[counter] = tilemap.GetTile(pos);
