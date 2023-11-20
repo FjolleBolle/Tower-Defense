@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class MeleeEnemy : MonoBehaviour
 {
-    public int health;
+    public int health = 10;
+    public int currentHp;
     public int damage;
 
     // Start is called before the first frame update
@@ -16,7 +17,10 @@ public class MeleeEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (health == 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     IEnumerator TickDamage()
