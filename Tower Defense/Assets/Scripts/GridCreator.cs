@@ -15,15 +15,15 @@ public class GridCreator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        for (int i = 0; i < columnLength * rowLength; i++)
+        {
+            Instantiate(prefab, new Vector3(x_Space + (x_Space * (i % columnLength)), 0, z_Space + (z_Space * (i / columnLength))), Quaternion.identity);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        for(int i = 0; i < columnLength*rowLength; i++)
-        {
-            Instantiate(prefab, new Vector3(x_Space + (x_Space * (i % columnLength)), 0, z_Space + (z_Space * (i / columnLength))), Quaternion.identity);
-        }
+
     }
 }

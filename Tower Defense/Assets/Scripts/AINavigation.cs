@@ -9,6 +9,7 @@ public class AINavigation : MonoBehaviour
     public GameObject goal;
 
 
+
     private void Awake()
     {
         goal = GameObject.FindGameObjectWithTag("Base");
@@ -24,6 +25,6 @@ public class AINavigation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
