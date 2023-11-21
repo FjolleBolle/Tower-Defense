@@ -5,10 +5,10 @@ using UnityEngine;
 public class Kill : MonoBehaviour
 {
     public int damage;
-    public MeleeEnemy melee;
-    public GameObject meleeEnemy, rangerEnemy;
 
     public List<GameObject> targets = new List<GameObject>();
+
+    public float time = 1f;
 
     // Start is called before the first frame update
     void Start()
@@ -19,9 +19,17 @@ public class Kill : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (melee.health == 0)
+        if(targets.Count > 0)
         {
-            Destroy(meleeEnemy);
+            if (targets[0].GetComponent<MeleeEnemy>().health <= 0)
+            {
+                targets.RemoveAt(0);
+            }
+        }
+        
+        if(targets.Count == 0)
+        {
+            StopAllCoroutines();
         }
     }
 
@@ -48,8 +56,8 @@ public class Kill : MonoBehaviour
     private IEnumerator TickDamage()
     {
         Debug.Log("Attack");
-        melee.health -= damage;
-        yield return new WaitForSeconds(1f);
+        targets[0].GetComponent<MeleeEnemy>().health -= damage;
+        yield return new WaitForSeconds(time);
         StartCoroutine(TickDamage());
     }
 }

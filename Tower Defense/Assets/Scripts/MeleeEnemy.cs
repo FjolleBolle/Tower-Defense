@@ -8,24 +8,12 @@ public class MeleeEnemy : MonoBehaviour
     public int currentHp;
     public int damage;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
-        if (health == 0)
+        if (health <= 0 && GetComponent<AINavigation>().changeCost)
         {
-            Destroy(gameObject);
+            StartCoroutine(GetComponent<AINavigation>().PlaceCostField());
         }
-    }
-
-    IEnumerator TickDamage()
-    {
-        health = health - 10;
-        yield return null;
     }
 }

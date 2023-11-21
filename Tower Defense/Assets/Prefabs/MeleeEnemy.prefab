@@ -159,9 +159,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goal: {fileID: 0}
-  costChangePrefab: {fileID: 0}
+  costChangePrefab: {fileID: 8527902180874391493, guid: 36d0688a7aba2674ba658086a9d64e16, type: 3}
   surface: {fileID: 0}
-  changeCost: 0
+  changeCost: 1
 --- !u!54 &892091086197461310
 Rigidbody:
   m_ObjectHideFlags: 0
