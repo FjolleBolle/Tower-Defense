@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5313146947778468919}
   - component: {fileID: 3104082163167601541}
   - component: {fileID: 7812863704335375154}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Range
   m_TagString: Range
   m_Icon: {fileID: 0}
@@ -66,8 +66,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4764575abaa829b41943e98ebbc594b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy1: {fileID: 5662916384765118823, guid: d20dffa527447c941a447953d0903bba, type: 3}
-  enemy2: {fileID: 5409755248144571669, guid: e52856af7c16a47438350b3e29ddf0b7, type: 3}
+  damage: 10
+  melee: {fileID: 0}
+  meleeEnemy: {fileID: 0}
+  rangerEnemy: {fileID: 0}
+  targets: []
 --- !u!1 &4145272923427569417
 GameObject:
   m_ObjectHideFlags: 0
@@ -80,7 +83,7 @@ GameObject:
   - component: {fileID: 7281744569520768516}
   - component: {fileID: 6452425586444919524}
   - component: {fileID: 6996182202032873189}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PeaShooterTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -144,6 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
+  currentHp: 10
   damage: 3
 --- !u!114 &2839657774090333792
 MonoBehaviour:
@@ -158,6 +159,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goal: {fileID: 0}
+  costChangePrefab: {fileID: 0}
+  surface: {fileID: 0}
+  changeCost: 0
 --- !u!54 &892091086197461310
 Rigidbody:
   m_ObjectHideFlags: 0
