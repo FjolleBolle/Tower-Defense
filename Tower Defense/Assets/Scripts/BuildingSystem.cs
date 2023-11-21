@@ -21,7 +21,7 @@ public class BuildingSystem : MonoBehaviour
     {
         _mainCamera = Camera.main;
         _buildingPrefab = null;
-            
+       
     }
 
     private void Update()
@@ -49,8 +49,21 @@ public class BuildingSystem : MonoBehaviour
 
                 if (Input.GetMouseButtonDown(0))
                 {
-                    _buildingPrefab = null;
-                    _toBuild = null;
+                    tower_Manager m = _toBuild.GetComponent <tower_Manager>();
+                    if (m.ValidPlacement == true)
+                    {
+
+                        if (_toBuild.gameObject.tag == "RangeTower") {
+                            _toBuild.GetComponentInChildren<CapsuleCollider>().enabled = true;
+                            _toBuild.GetComponentInChildren<SphereCollider>().enabled = true;
+                        }
+
+                        _buildingPrefab = null;
+                        _toBuild = null;
+                    }
+
+
+                    
                 }
             }
             else if (_toBuild.activeSelf) _toBuild.SetActive(false);
