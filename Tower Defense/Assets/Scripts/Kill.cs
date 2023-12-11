@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Kill : MonoBehaviour
@@ -10,10 +11,11 @@ public class Kill : MonoBehaviour
 
     public float time = 1f;
 
-    // Start is called before the first frame update
-    void Start()
+    public float timer = 0f;
+
+    private void Start()
     {
-        
+        timer = 0.4f;
     }
 
     // Update is called once per frame
@@ -21,15 +23,22 @@ public class Kill : MonoBehaviour
     {
         if(targets.Count > 0)
         {
+            timer += Time.deltaTime; 
             if (targets[0].GetComponent<MeleeEnemy>().health <= 0)
             {
                 targets.RemoveAt(0);
             }
         }
-        
-        if(targets.Count == 0)
+        else if(targets.Count <= 0)
         {
-            StopAllCoroutines();
+            timer = 0.4f;
+        }
+
+        if (timer >= time)
+        {
+            timer = 0f;
+            Debug.Log("Attack");
+            targets[0].GetComponent<MeleeEnemy>().health -= damage;
         }
     }
 
@@ -39,7 +48,6 @@ public class Kill : MonoBehaviour
         if (other.gameObject.CompareTag("Melee") || other.gameObject.CompareTag("Ranger"))
         {
             targets.Add(other.gameObject);
-            StartCoroutine(TickDamage());
         }
     }
 
@@ -49,15 +57,14 @@ public class Kill : MonoBehaviour
         if (other.gameObject.CompareTag("Melee") || other.gameObject.CompareTag("Ranger"))
         {
             targets.Remove(other.gameObject);
-            StopAllCoroutines();
         }
     }
 
-    private IEnumerator TickDamage()
+    /*private IEnumerator TickDamage()
     {
         Debug.Log("Attack");
         targets[0].GetComponent<MeleeEnemy>().health -= damage;
         yield return new WaitForSeconds(time);
         StartCoroutine(TickDamage());
-    }
+    }*/
 }

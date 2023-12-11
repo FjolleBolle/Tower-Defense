@@ -4,24 +4,27 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject melee;
+    public GameObject melee;
     //[SerializeField]
     //private GameObject ranger;
 
-    [SerializeField] 
-    private float meleeInterval = 5f;
+    public float meleeInterval = 5f;
     //[SerializeField]
     //private float rangerInterval = 10f;
 
     public int enemyCounter = 0;
+    public int limit;
 
     public Transform chosenPoint;
     public Transform point1;
     public Transform point2;
 
-    public float timer;
-    public List<float> prevTime;
+    public Dictionary<Transform, float> savedData = new Dictionary<Transform, float>();
+
+    /*
+    Vi laver en dictionary der kun har det antal entries der svarer til spawnpoints. Den gemmer kun den fjende der overlevede længst og ved hvilket spawnpoint. 
+    Hvis der så kommer en der overlever længere ved det samme spawnpoint bliver entrien opdateret. Vi gider ikke gemme på alle fjender fordi vi vil kun have den "bedste". 
+     */
 
     public bool hasSpawned = false;
 
@@ -29,51 +32,38 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         enemyCounter = 0;
-        prevTime = new List<float>();
+        chosenPoint = point1;
         StartCoroutine(spawnEnemy(meleeInterval, melee, chosenPoint));
         //StartCoroutine(spawnEnemy(rangerInterval, ranger));
     }
 
     private void Update()
     {
-        if (enemyCounter >= 1)
-        {
-            timer += Time.deltaTime;
-        }
-        else if(enemyCounter <= 0 && hasSpawned == true)
+        if(enemyCounter <= 0 && hasSpawned == true)
         {
             hasSpawned = false;
-            prevTime.Add(timer);
-            timer = 0;
+            Debug.Log("Dictionary: " + savedData.Keys.Count + ", " + savedData.Values.Count);
         }
     }
 
+
+
     private IEnumerator spawnEnemy(float interval, GameObject enemy, Transform point)
     {
-        yield return new WaitForSeconds(interval);
         if (GameObject.FindGameObjectsWithTag("Melee").Length <= 0)
         {
             enemyCounter = 0;
-            if (chosenPoint == point1)
-            {
-                chosenPoint = point2;
-            }
-            else if (chosenPoint == point2)
-            {
-                chosenPoint = point1;
-            }
-            yield return new WaitForSeconds(1);
         }
+        yield return new WaitForSeconds(interval);
 
         point = chosenPoint;
 
-        if(enemyCounter < 5)
+        if(enemyCounter < limit)
         {
-            hasSpawned = true;
             GameObject newEnemy = Instantiate(enemy, new Vector3(point.position.x, point.position.y, point.position.z), Quaternion.identity);
+            hasSpawned = true;
             enemyCounter++;
         }
-        Debug.Log("Done");
         StartCoroutine(spawnEnemy(interval, enemy, point));
     }
 }

@@ -32,16 +32,6 @@ public class AINavigation : MonoBehaviour
         agent.destination = goal.transform.position;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space) && changeCost == true)
-        {
-            changeCost = false;
-            StartCoroutine(PlaceCostField());
-        }
-    }
-
     public IEnumerator PlaceCostField()
     {
         changeCost = false;

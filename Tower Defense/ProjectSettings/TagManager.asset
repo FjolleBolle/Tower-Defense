@@ -10,6 +10,7 @@ TagManager:
   - Range
   - RangeTower
   - Surface
+  - Spawner
   layers:
   - Default
   - TransparentFX
