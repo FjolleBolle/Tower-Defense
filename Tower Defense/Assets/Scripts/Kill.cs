@@ -37,14 +37,12 @@ public class Kill : MonoBehaviour
         if (timer >= time)
         {
             timer = 0f;
-            Debug.Log("Attack");
             targets[0].GetComponent<MeleeEnemy>().health -= damage;
         }
     }
 
     public void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Entered!");
         if (other.gameObject.CompareTag("Melee") || other.gameObject.CompareTag("Ranger"))
         {
             targets.Add(other.gameObject);
@@ -53,7 +51,6 @@ public class Kill : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        Debug.Log("Escaped!");
         if (other.gameObject.CompareTag("Melee") || other.gameObject.CompareTag("Ranger"))
         {
             targets.Remove(other.gameObject);
