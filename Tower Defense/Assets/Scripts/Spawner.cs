@@ -77,7 +77,7 @@ public class Spawner : MonoBehaviour
             GameObject newEnemy = Instantiate(enemy, new Vector3(chosenPoint.position.x, chosenPoint.position.y, chosenPoint.position.z), Quaternion.identity);
             enemyCounter++;
             min = 1000f;
-            if (bestData[chosenPoint] < savedData[chosenPoint] && limit <= maxlimit)
+            if (bestData[chosenPoint] < savedData[chosenPoint] && limit < maxlimit)
             {
                 savedData[chosenPoint] = bestData[chosenPoint];
                 Debug.Log("This is the best distance for: " + chosenPoint.ToString() + ", " + bestData[chosenPoint]);
