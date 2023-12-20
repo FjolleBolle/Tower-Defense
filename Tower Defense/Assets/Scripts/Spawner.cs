@@ -14,6 +14,7 @@ public class Spawner : MonoBehaviour
 
     public int enemyCounter = 0;
     public int limit;
+    public int maxlimit;
 
     public Transform chosenPoint;
     public Transform point1;
@@ -22,14 +23,9 @@ public class Spawner : MonoBehaviour
     public Transform point4;
 
     public Dictionary<Transform, float> savedData = new Dictionary<Transform, float>();
+    public Dictionary<Transform, float> bestData = new Dictionary<Transform, float>();
 
-    /*
-    Vi laver en dictionary der kun har det antal entries der svarer til spawnpoints. Den gemmer kun den fjende der overlevede længst og ved hvilket spawnpoint. 
-    Hvis der så kommer en der overlever længere ved det samme spawnpoint bliver entrien opdateret. Vi gider ikke gemme på alle fjender fordi vi vil kun have den "bedste". 
-     */
-
-    public bool hasSpawned = false;
-    public bool spawning = true;
+    public bool loop = true;
 
     private float min = 1000f;
 
@@ -37,34 +33,39 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         enemyCounter = 0;
-        StartCoroutine(spawnEnemyStart(meleeInterval, melee, point1, 0));
+        chosenPoint = point1;
+        StartCoroutine(spawnEnemyStart(meleeInterval, melee, chosenPoint, 0));
     }
 
     private void Update()
     { 
-        if (savedData.Count >= 4 && spawning == true)
+        if (savedData.Count >= 4 && loop == true)
         {
             StopAllCoroutines();
-            spawning = false;
+            loop = false;
             StartCoroutine(SpawnEnemy(meleeInterval, melee));
         }
     }
 
     public IEnumerator SpawnEnemy(float interval, GameObject enemy)
     {
-        if (GameObject.FindGameObjectsWithTag("Melee").Length <= 0 && hasSpawned == true)
+        if (GameObject.FindGameObjectsWithTag("Melee").Length <= 0)
         {
             enemyCounter = 0;
-            hasSpawned = false;
-            Debug.Log("Dictionary: " + savedData.ContainsKey(point1) + ", " + savedData[point1]);
-            Debug.Log("Dictionary: " + savedData.ContainsKey(point2) + ", " + savedData[point2]);
-            Debug.Log("Dictionary: " + savedData.ContainsKey(point3) + ", " + savedData[point3]);
-            Debug.Log("Dictionary: " + savedData.ContainsKey(point4) + ", " + savedData[point4]);
+            if (bestData[chosenPoint] > savedData[chosenPoint])
+            {
+                bestData[chosenPoint] = savedData[chosenPoint];
+            }
+            Debug.Log("Dictionary: " + point1.ToString() + ", " + savedData[point1]);
+            Debug.Log("Dictionary: " + point2.ToString() + ", " + savedData[point2]);
+            Debug.Log("Dictionary: " + point3.ToString() + ", " + savedData[point3]);
+            Debug.Log("Dictionary: " + point4.ToString() + ", " + savedData[point4]);
         }
+
+        yield return new WaitForSeconds(interval);
 
         if (enemyCounter < limit)
         {
-            hasSpawned = true;
             foreach (Transform t in savedData.Keys)
             {
                 if (savedData[t] < min)
@@ -73,15 +74,18 @@ public class Spawner : MonoBehaviour
                     chosenPoint = t;
                 }
             }
-            
             GameObject newEnemy = Instantiate(enemy, new Vector3(chosenPoint.position.x, chosenPoint.position.y, chosenPoint.position.z), Quaternion.identity);
             enemyCounter++;
             min = 1000f;
+            if (bestData[chosenPoint] < savedData[chosenPoint] && limit <= maxlimit)
+            {
+                savedData[chosenPoint] = bestData[chosenPoint];
+                Debug.Log("This is the best distance for: " + chosenPoint.ToString() + ", " + bestData[chosenPoint]);
+                limit++;
+            }
         }
-        yield return new WaitForSeconds(interval);
-        spawning = true;
+        loop = true;
     }
-
 
     private IEnumerator spawnEnemyStart(float interval, GameObject enemy, Transform point, int num)
     {
@@ -89,16 +93,17 @@ public class Spawner : MonoBehaviour
         {
             enemyCounter = 0;
         }
+
         yield return new WaitForSeconds(interval);
 
         if(enemyCounter < limit)
         {
             GameObject newEnemy = Instantiate(enemy, new Vector3(point.position.x, point.position.y, point.position.z), Quaternion.identity);
-            hasSpawned = true;
             enemyCounter++;
             num++;
         }
         yield return new WaitForSeconds(interval);
+        
         switch (num)
         {
             case 1: chosenPoint = point2; 

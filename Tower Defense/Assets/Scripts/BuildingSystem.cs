@@ -21,7 +21,6 @@ public class BuildingSystem : MonoBehaviour
     {
         _mainCamera = Camera.main;
         _buildingPrefab = null;
-       
     }
 
     private void Update()
@@ -36,9 +35,6 @@ public class BuildingSystem : MonoBehaviour
             {
                 _toBuild.SetActive(true);
             }
-
-
-
 
             _ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(_ray, out _hit, 1000f, GroundLayerMask))

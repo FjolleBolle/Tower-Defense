@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEngine.Mesh;
 
 public class MeleeEnemy : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class MeleeEnemy : MonoBehaviour
     public int damage;
 
     private Spawner spawner;
-    public float timeAlive;
+    public float distLeft;
     public Transform spawnPoint;
     NavMeshAgent agent;
 
@@ -26,19 +27,20 @@ public class MeleeEnemy : MonoBehaviour
     {
         if (health > 0)
         {
-            timeAlive = RemainingDistance(agent.path.corners);
+            distLeft = RemainingDistance(agent.path.corners);
         }
 
         if (health <= 0 && GetComponent<AINavigation>().changeCost)
         {
             if (spawner.savedData.ContainsKey(spawnPoint)) //Vi skal også tjekke om timeAlive er større end den værdi der allerede er der
             {
-                spawner.savedData[spawnPoint] = timeAlive;
+                spawner.savedData[spawnPoint] = distLeft;
                 Debug.Log("Changed key");
             }
             else
             {
-                spawner.savedData.Add(spawnPoint, timeAlive);
+                spawner.savedData.Add(spawnPoint, distLeft);
+                spawner.bestData.Add(spawnPoint, distLeft);
                 Debug.Log("Added point!");
             }
             StartCoroutine(GetComponent<AINavigation>().PlaceCostField());

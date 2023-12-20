@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1581624641124066434}
   - component: {fileID: 4545423523002782716}
   - component: {fileID: 4272493163506934999}
-  - component: {fileID: 6039280648874881665}
+  - component: {fileID: -8752116500503351873}
   m_Layer: 0
   m_Name: NormalRangeTower
   m_TagString: RangeTower
@@ -69,7 +69,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.3681488, z: 1}
   m_Center: {x: 0, y: 0.74811554, z: 0}
---- !u!54 &6039280648874881665
+--- !u!54 &-8752116500503351873
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -88,7 +88,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -104,29 +104,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1581624641124066434}
     m_Modifications:
-    - target: {fileID: 3104082163167601541, guid: 9cfae7bec5b27e7408fbcb6f71cbb5bf, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4145272923427569417, guid: 9cfae7bec5b27e7408fbcb6f71cbb5bf, type: 3}
       propertyPath: m_Name
       value: PeaShooterTower
-      objectReference: {fileID: 0}
-    - target: {fileID: 6996182202032873189, guid: 9cfae7bec5b27e7408fbcb6f71cbb5bf, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7812863704335375154, guid: 9cfae7bec5b27e7408fbcb6f71cbb5bf, type: 3}
-      propertyPath: time
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7812863704335375154, guid: 9cfae7bec5b27e7408fbcb6f71cbb5bf, type: 3}
-      propertyPath: damage
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7812863704335375154, guid: 9cfae7bec5b27e7408fbcb6f71cbb5bf, type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8188778744928482889, guid: 9cfae7bec5b27e7408fbcb6f71cbb5bf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -171,34 +151,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3451225410156742241, guid: 9cfae7bec5b27e7408fbcb6f71cbb5bf, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7364989616026226542}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9cfae7bec5b27e7408fbcb6f71cbb5bf, type: 3}
 --- !u!4 &1154963332778367678 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8188778744928482889, guid: 9cfae7bec5b27e7408fbcb6f71cbb5bf, type: 3}
   m_PrefabInstance: {fileID: 7035506529761504503}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &5640218468613745302 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3451225410156742241, guid: 9cfae7bec5b27e7408fbcb6f71cbb5bf, type: 3}
-  m_PrefabInstance: {fileID: 7035506529761504503}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7364989616026226542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5640218468613745302}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81f1ef68bfff27e4e8d3c89c25fedaaa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 4
-  targets: []
-  time: 0.5
-  timer: 0

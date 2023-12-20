@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5313146947778468919}
   - component: {fileID: 3104082163167601541}
   - component: {fileID: 7812863704335375154}
+  - component: {fileID: 523196272563135247}
   m_Layer: 3
   m_Name: Range
   m_TagString: Range
@@ -50,7 +51,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 6
   m_Center: {x: 0, y: 0, z: 0}
@@ -66,11 +67,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4764575abaa829b41943e98ebbc594b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
-  melee: {fileID: 0}
-  meleeEnemy: {fileID: 0}
-  rangerEnemy: {fileID: 0}
+  damage: 4
   targets: []
+  time: 0.5
+  timer: 0
+--- !u!114 &523196272563135247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3451225410156742241}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81f1ef68bfff27e4e8d3c89c25fedaaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 4
+  targets: []
+  time: 0.5
+  timer: 0
 --- !u!1 &4145272923427569417
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,7 +189,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Height: 2
