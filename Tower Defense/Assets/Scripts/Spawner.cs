@@ -56,10 +56,10 @@ public class Spawner : MonoBehaviour
             {
                 bestData[chosenPoint] = savedData[chosenPoint];
             }
-            Debug.Log("Dictionary: " + point1.ToString() + ", " + savedData[point1]);
+            /*Debug.Log("Dictionary: " + point1.ToString() + ", " + savedData[point1]);
             Debug.Log("Dictionary: " + point2.ToString() + ", " + savedData[point2]);
             Debug.Log("Dictionary: " + point3.ToString() + ", " + savedData[point3]);
-            Debug.Log("Dictionary: " + point4.ToString() + ", " + savedData[point4]);
+            Debug.Log("Dictionary: " + point4.ToString() + ", " + savedData[point4]);*/
         }
 
         yield return new WaitForSeconds(interval);

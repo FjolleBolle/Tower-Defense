@@ -54,7 +54,8 @@ public class SpawnerLite : MonoBehaviour
         {
             hasSpawned = true;
 
-            GameObject newEnemy = Instantiate(enemy, new Vector3(chosenPoint.position.x, chosenPoint.position.y, chosenPoint.position.z), Quaternion.identity);
+            GameObject newEnemy = Instantiate(enemy, new Vector3(chosenPoint.position.x, 
+                chosenPoint.position.y, chosenPoint.position.z), Quaternion.identity);
             enemyCounter++;
         }
         yield return new WaitForSeconds(interval);

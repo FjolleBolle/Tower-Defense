@@ -39,6 +39,5 @@ public class AINavigation : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         surface.BuildNavMesh();
         Destroy(gameObject);
-        //changeCost = true;
     }
 }
