@@ -80,7 +80,6 @@ public class Spawner : MonoBehaviour
             if (bestData[chosenPoint] < savedData[chosenPoint] && limit < maxlimit)
             {
                 savedData[chosenPoint] = bestData[chosenPoint];
-                Debug.Log("This is the best distance for: " + chosenPoint.ToString() + ", " + bestData[chosenPoint]);
                 limit++;
             }
         }
